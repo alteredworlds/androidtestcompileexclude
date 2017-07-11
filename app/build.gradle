@@ -38,6 +38,7 @@ dependencies {
     }
 }
 
+// see: https://issuetracker.google.com/issues/63154935
 android.testVariants.all { variant ->
     variant.getCompileConfiguration().exclude group: 'com.jakewharton.threetenabp', module: 'threetenabp'
     variant.getRuntimeConfiguration().exclude group: 'com.jakewharton.threetenabp', module: 'threetenabp'
