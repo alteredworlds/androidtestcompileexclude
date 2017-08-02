@@ -32,11 +32,21 @@ dependencies {
     implementation 'com.jakewharton.threetenabp:threetenabp:1.0.5'
     // For testing, require version containing assets in Android-inefficient manner
     // see: https://github.com/JakeWharton/ThreeTenABP/issues/14
-    androidTestImplementation("org.threeten:threetenbp:1.3.3")
+    androidTestImplementation("org.threeten:threetenbp:1.3.3") {
+        // do we still need this, does it do anything?
+        exclude group: 'com.jakewharton.threetenabp', module: 'threetenabp'
+    }
 }
 
 // see: https://issuetracker.google.com/issues/63154935
+//      https://issuetracker.google.com/issues/63748587
+//      https://github.com/JakeWharton/ThreeTenABP/issues/54
 android.testVariants.all { variant ->
     variant.getCompileConfiguration().exclude group: 'com.jakewharton.threetenabp', module: 'threetenabp'
+    variant.getRuntimeConfiguration().exclude group: 'com.jakewharton.threetenabp', module: 'threetenabp'
+}
+
+android.unitTestVariants.all { variant ->
     variant.getCompileConfiguration().exclude group: 'com.jakewharton.threetenabp', module: 'threetenabp'
+    variant.getRuntimeConfiguration().exclude group: 'com.jakewharton.threetenabp', module: 'threetenabp'
 }
